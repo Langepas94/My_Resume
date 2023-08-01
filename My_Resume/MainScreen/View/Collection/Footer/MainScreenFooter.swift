@@ -8,27 +8,39 @@
 import Foundation
 import UIKit
 
-class MainScreenFooter: UICollectionReusableView {
-    static let reuseIdentifier = "headerView"
-    var habits: UILabel = {
+class MainScreenFooter: UIView {
+//    static let reuseIdentifier = "headerView"
+    var aboutMe: UILabel = {
         let habits = UILabel()
         habits.translatesAutoresizingMaskIntoConstraints = false
         habits.numberOfLines = 1
-        habits.text = "Обо мне"
-        habits.font = .systemFont(ofSize: 16)
+        habits.textAlignment = .left
+        habits.text = "О себе"
+        habits.font = .boldSystemFont(ofSize: 16)
+        return habits
+    }()
+    var about: UILabel = {
+        let habits = UILabel()
+        habits.translatesAutoresizingMaskIntoConstraints = false
+        habits.numberOfLines = 2
+        habits.textAlignment = .left
+        habits.text = "Experienced software engineer skilled in developing scalable and maintainable systems"
+        habits.font = .systemFont(ofSize: 14)
         return habits
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red
-        addSubview(habits)
-        habits.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(aboutMe)
+        addSubview(about)
+        aboutMe.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            habits.leadingAnchor.constraint(equalTo: leadingAnchor),
-            habits.trailingAnchor.constraint(equalTo: trailingAnchor),
-            habits.topAnchor.constraint(equalTo: topAnchor),
-            habits.bottomAnchor.constraint(equalTo: bottomAnchor)
+            aboutMe.topAnchor.constraint(equalTo: topAnchor, constant: CGFloat(MyResources.Constraints.top)),
+            aboutMe.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat(MyResources.Constraints.leading)),
+            about.topAnchor.constraint(equalTo: aboutMe.bottomAnchor, constant: CGFloat(MyResources.Constraints.betweenElementsSmall)),
+            about.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat(MyResources.Constraints.leading)),
+            about.trailingAnchor.constraint(equalTo: trailingAnchor, constant: CGFloat(MyResources.Constraints.trailing)),
         ])
         
     }

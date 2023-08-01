@@ -23,7 +23,12 @@ final class MainScreenViewController: UIViewController {
         return image
     }()
     
-    var scrollView = UIScrollView()
+    let scrollView: UIScrollView = {
+        let v = UIScrollView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = .cyan
+        return v
+    }()
     
     private lazy var profileName: UILabel = {
         let text = UILabel()
@@ -58,8 +63,6 @@ final class MainScreenViewController: UIViewController {
     }()
     
     private lazy var collectionView: MainCollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
         let view = MainCollectionView()
         view.texts = self.vm.getHabits() ?? [""]
         view.backgroundColor = MyResources.Colors.background
@@ -67,14 +70,11 @@ final class MainScreenViewController: UIViewController {
         return view
     }()
     
-    private lazy var aboutMe: UILabel = {
-        let text = UILabel()
-        text.translatesAutoresizingMaskIntoConstraints = false
-        text.font = .systemFont(ofSize: 14)
-        text.textColor = .black
-        text.text = vm.allData?.aboutMe ?? ""
-        text.numberOfLines = 2
-        return text
+    var footer: MainScreenFooter = {
+        let view = MainScreenFooter()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = MyResources.Colors.background
+        return view
     }()
     
     // MARK: - ViewDidLoad
@@ -128,8 +128,9 @@ extension MainScreenViewController {
         view.addSubview(detailData)
         view.addSubview(location)
         view.addSubview(collectionView)
+        view.addSubview(footer)
+        view.addSubview(scrollView)
         
-        scrollView.frame = view.bounds
         
         
         // MARK: - Constraints
@@ -140,7 +141,7 @@ extension MainScreenViewController {
             profileImage.heightAnchor.constraint(lessThanOrEqualTo: view.widthAnchor, multiplier: 0.3),
             profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            profileName.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: CGFloat(MyResources.Constraints.bottom)),
+            profileName.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: CGFloat(MyResources.Constraints.top)),
             profileName.leadingAnchor.constraint(lessThanOrEqualTo: view.leadingAnchor, constant: CGFloat(MyResources.Constraints.leading)),
             profileName.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: CGFloat(MyResources.Constraints.trailing)),
             profileName.centerXAnchor.constraint(equalTo: profileImage.centerXAnchor),
@@ -155,12 +156,15 @@ extension MainScreenViewController {
             location.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: CGFloat(MyResources.Constraints.trailing)),
             location.centerXAnchor.constraint(equalTo: detailData.centerXAnchor),
             
+            footer.heightAnchor.constraint(equalToConstant: 150),
+            footer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            footer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            footer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
             collectionView.topAnchor.constraint(equalTo: location.bottomAnchor, constant: CGFloat(MyResources.Constraints.top)),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: footer.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            
             
         ])
         

@@ -21,6 +21,7 @@ enum MyResources {
         static let leading = 32
         static let trailing = -32
         static let betweenElements = 8
+        static let betweenElementsSmall = 4
     }
 }
 

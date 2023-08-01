@@ -41,6 +41,7 @@ class MainCollectionCell: UICollectionViewCell {
     }
     
     func setupUI() {
+        
         contentView.addSubview(titleLabel)
         contentView.addSubview(deleteButton)
         
@@ -57,6 +58,8 @@ class MainCollectionCell: UICollectionViewCell {
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 8
         
+        
+        // MARK: - Constraints
         NSLayoutConstraint.activate([
             deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             deleteButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
@@ -79,15 +82,24 @@ class MainCollectionCell: UICollectionViewCell {
         if isDeleteButtonEnabled {
             deleteButton.isEnabled = true
             deleteButton.isHidden = false
+            self.shakeAnimation()
             
         } else {
             deleteButton.isEnabled.toggle()
             deleteButton.isHidden.toggle()
-            
         }
-        
     }
     
+    // MARK: - Animation
+    
+    func shakeAnimation() {
+            let shakeAnimation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+            shakeAnimation.timingFunction = CAMediaTimingFunction(name: .linear)
+            shakeAnimation.duration = 0.3
+            shakeAnimation.values = [-10, 10, -10, 10, -5, 5, -2, 2, 0]
+            layer.add(shakeAnimation, forKey: "shakeAnimation")
+        }
+
     
     override func prepareForReuse() {
         super.prepareForReuse()

@@ -13,9 +13,7 @@ class MainCollectionView: UIView {
     // MARK: Pulic
     
     lazy var collectionView: UICollectionView = {
-        
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createCompose())
-        collection.isUserInteractionEnabled = false
         return collection
     }()
     
@@ -26,7 +24,7 @@ class MainCollectionView: UIView {
         habits.translatesAutoresizingMaskIntoConstraints = false
         habits.numberOfLines = 1
         habits.text = "Мои навыки"
-        habits.font = .systemFont(ofSize: 16)
+        habits.font = .boldSystemFont(ofSize: 16)
         return habits
     }()
     
@@ -106,12 +104,6 @@ class MainCollectionView: UIView {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(70))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionFooter, alignment: .top)
-        sectionHeader.contentInsets.leading = -16
-        sectionHeader.contentInsets.trailing = -16
-                section.boundarySupplementaryItems = [sectionHeader]
-                sectionHeader.pinToVisibleBounds = true
         return section
         
     }
@@ -180,13 +172,6 @@ extension MainCollectionView: UICollectionViewDataSource, UICollectionViewDelega
                 }
             }
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 180.0)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: 60.0, height: 30.0)
     }
 }
 
