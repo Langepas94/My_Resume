@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "545ADBC9-1A65-41AB-8548-EF1E53DB8F82"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE31C2D8-BA3B-4D76-8F31-EFF46F8A4D7E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "My_Resume/MainScreen/View/Collection/MainCollectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BE31C2D8-BA3B-4D76-8F31-EFF46F8A4D7E - f20b428b1ee7f66d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "My_Resume.MainCollectionView.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "My_Resume"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/Desktop/My_Resume/My_Resume/MainScreen/View/Collection/MainCollectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "700">
+               </Location>
+               <Location
+                  uuid = "BE31C2D8-BA3B-4D76-8F31-EFF46F8A4D7E - f20b428b1ee7f66d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "My_Resume.MainCollectionView.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "My_Resume"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/Desktop/My_Resume/My_Resume/MainScreen/View/Collection/MainCollectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "1044">
+               </Location>
+               <Location
+                  uuid = "BE31C2D8-BA3B-4D76-8F31-EFF46F8A4D7E - f20b428b1ee7f66d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "My_Resume.MainCollectionView.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "My_Resume"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/Desktop/My_Resume/My_Resume/MainScreen/View/Collection/MainCollectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "672">
+               </Location>
+               <Location
+                  uuid = "BE31C2D8-BA3B-4D76-8F31-EFF46F8A4D7E - f20b428b1ee7f66d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "My_Resume.MainCollectionView.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "My_Resume"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/Desktop/My_Resume/My_Resume/MainScreen/View/Collection/MainCollectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "988">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE109BAF-7D66-4263-A148-CDFABC59C7A6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "My_Resume/MainScreen/View/Collection/MainCollectionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CE109BAF-7D66-4263-A148-CDFABC59C7A6 - f20b428b1ee7f64c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "My_Resume.MainCollectionView.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "My_Resume"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/Desktop/My_Resume/My_Resume/MainScreen/View/Collection/MainCollectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "632">
+               </Location>
+               <Location
+                  uuid = "CE109BAF-7D66-4263-A148-CDFABC59C7A6 - f20b428b1ee7f64c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "My_Resume.MainCollectionView.collectionView(_: __C.UICollectionView, didSelectItemAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "My_Resume"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/Desktop/My_Resume/My_Resume/MainScreen/View/Collection/MainCollectionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "604">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
