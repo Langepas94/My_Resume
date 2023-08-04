@@ -14,6 +14,7 @@ class MainCollectionView: UIView {
     
     lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createCompose())
+        collection.showsVerticalScrollIndicator = false
         return collection
     }()
     
@@ -72,7 +73,9 @@ class MainCollectionView: UIView {
         collectionView.backgroundColor = .white
         
         editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+        
     }
+    
     
     // MARK: - Compositional Layout
     
@@ -85,24 +88,25 @@ class MainCollectionView: UIView {
         
         let layoutSize = NSCollectionLayoutSize(
             widthDimension: .estimated(100),
-            heightDimension: .absolute(62)
+            heightDimension: .absolute(42)
         )
         
         let layoutItem = NSCollectionLayoutItem(layoutSize: layoutSize)
         
-        layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 18, leading: 8, bottom: 8, trailing: 8)
+//        layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 18, leading: 0, bottom: 8, trailing: 0)
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: layoutSize.heightDimension
+                heightDimension: .absolute(52)
             ),
             subitems: [layoutItem]
         )
         group.interItemSpacing = .fixed(14)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 18, leading: 8, bottom: 8, trailing: 0)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        section.contentInsets = .init(top: 18, leading: 8, bottom: 8, trailing: 0)
         
         return section
         
@@ -111,11 +115,13 @@ class MainCollectionView: UIView {
     // MARK : - Data Func
     
     @objc func editButtonTapped(_ sender: UIButton) {
+
         isEditing.toggle()
-        
+       
         sender.isSelected.toggle()
         
         collectionView.reloadData()
+
     }
     
     // MARK: Init's
@@ -148,11 +154,9 @@ extension MainCollectionView: UICollectionViewDataSource, UICollectionViewDelega
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainCollectionCell
             
-            cell.configure(text: texts[indexPath.row] ?? "")
-            if isEditing {
-                cell.isDeleteButtonEnabled = true
-            } else {
-                cell.isDeleteButtonEnabled = false
+            cell.configure(text: texts[indexPath.row] ?? "", isEditing: isEditing, maxWidth: frame.width - 40)
+            cell.deletingClosure = {
+                self.deleteTapped?(indexPath.row)
             }
             return cell
         }
@@ -160,17 +164,8 @@ extension MainCollectionView: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isEditing && indexPath.row == texts.count  {
-            
+
             alertTapped?(true)
-        } else if isEditing {
-            if let cell = collectionView.cellForItem(at: indexPath) as? MainCollectionCell {
-                
-                
-                cell.deletingClosure = {
-                    self.deleteTapped?(indexPath.row)
-                    print(indexPath.row)
-                }
-            }
         }
     }
 }

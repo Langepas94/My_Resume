@@ -117,8 +117,6 @@ final class MainScreenViewController: UIViewController {
     }
 }
 
-
-
 // MARK: Setup UI
 
 extension MainScreenViewController {

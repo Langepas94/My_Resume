@@ -24,19 +24,27 @@ class MainCollectionCell: UICollectionViewCell {
         return button
     }()
     
-    var isDeleteButtonEnabled: Bool = false {
-        didSet {
-            refreshLayout()
-        }
-    }
+    
+    private var textTrailing: NSLayoutConstraint?
+    private var textClosedButtonTrailing: NSLayoutConstraint?
+    private var cellWidth: NSLayoutConstraint?
     
     
     // MARK: - Public methods
-    func configure(text: String) {
+    func configure(text: String, isEditing: Bool, maxWidth: CGFloat) {
+        contentView.layoutIfNeeded()
         titleLabel.text = text
+        titleLabel.invalidateIntrinsicContentSize()
+        
+        deleteButton.isHidden = !isEditing
+        textTrailing?.isActive = !isEditing
+        textClosedButtonTrailing?.isActive = isEditing
+        
+        cellWidth?.constant = maxWidth
     }
     
     @objc func deleteTapped() {
+        print("tap")
         deletingClosure?()
     }
     
@@ -47,6 +55,15 @@ class MainCollectionCell: UICollectionViewCell {
         
         titleLabel.textColor = .black
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        textTrailing = titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24)
+        textTrailing?.isActive = true
+        
+        textClosedButtonTrailing = titleLabel.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: -10)
+        deleteButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
+        cellWidth = contentView.widthAnchor.constraint(lessThanOrEqualToConstant: 200)
+        cellWidth?.isActive = true
         
         titleLabel.font = .systemFont(ofSize: 14)
         titleLabel.numberOfLines = 1
@@ -60,46 +77,32 @@ class MainCollectionCell: UICollectionViewCell {
         
         
         // MARK: - Constraints
+        
         NSLayoutConstraint.activate([
-            deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            deleteButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            deleteButton.topAnchor.constraint(equalTo: contentView.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
             
-            
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            titleLabel.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: 5),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
+            deleteButton.widthAnchor.constraint(equalToConstant: 26),
+            deleteButton.heightAnchor.constraint(equalToConstant: 26),
+            deleteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -14)
         ])
         
         deleteButton.addTarget(self, action: #selector(deleteTapped), for: .touchUpInside)
         
     }
     
-    @objc func refreshLayout() {
-        
-        if isDeleteButtonEnabled {
-            deleteButton.isEnabled = true
-            deleteButton.isHidden = false
-            self.shakeAnimation()
-            
-        } else {
-            deleteButton.isEnabled.toggle()
-            deleteButton.isHidden.toggle()
-        }
-    }
-    
     // MARK: - Animation
     
     func shakeAnimation() {
-            let shakeAnimation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-            shakeAnimation.timingFunction = CAMediaTimingFunction(name: .linear)
-            shakeAnimation.duration = 0.3
-            shakeAnimation.values = [-10, 10, -10, 10, -5, 5, -2, 2, 0]
-            layer.add(shakeAnimation, forKey: "shakeAnimation")
-        }
-
+        let shakeAnimation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        shakeAnimation.timingFunction = CAMediaTimingFunction(name: .linear)
+        shakeAnimation.duration = 0.3
+        shakeAnimation.values = [-10, 10, -10, 10, -5, 5, -2, 2, 0]
+        layer.add(shakeAnimation, forKey: "shakeAnimation")
+    }
+    
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -107,16 +110,15 @@ class MainCollectionCell: UICollectionViewCell {
         titleLabel.text = nil
     }
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let targetSize = CGSize(width: layoutAttributes.frame.width,
-                                height: layoutAttributes.frame.height)
-        let targetAttributes = layoutAttributes.copy() as! UICollectionViewLayoutAttributes
-        let textSize = titleLabel.sizeThatFits(targetSize)
-        targetAttributes.frame.size = CGSize(width: ceil(textSize.width + 20) ,
-                                             height: ceil(textSize.height) )
-        return targetAttributes
-    }
-    
+    //    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    //        let targetSize = CGSize(width: layoutAttributes.frame.width + 20,
+    //                                height: layoutAttributes.frame.height)
+    //        let targetAttributes = layoutAttributes.copy() as! UICollectionViewLayoutAttributes
+    //        let textSize = titleLabel.sizeThatFits(targetSize)
+    //        targetAttributes.frame.size = CGSize(width: ceil(textSize.width + 20) ,
+    //                                             height: ceil(textSize.height) )
+    //        return targetAttributes
+    //    }
     
     // MARK: Init's
     

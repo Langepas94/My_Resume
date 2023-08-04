@@ -9,7 +9,7 @@ import Foundation
 
 final class MainScreenViewModel: MainScreenViewModelProtocol {
     
-   var allData: MainScreeModelProtocol? = MainScreenModel(myHabits: ["ios", "async/await", "protocols"])
+   var allData: MainScreeModelProtocol? = MainScreenModel(myHabits: ["ios", "async/await", "protocols", "Long text","ios", "async/await", "protocols", "Long text","ios", "async/await", "protocols", "Long text","ios", "async/await", "protocols", "Long text","ios", "async/await", "protocols", "Long text"])
     
     // MARK: - public methods
     func getHabits() -> [String]? {
