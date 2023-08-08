@@ -12,8 +12,9 @@ class MainCollectionView: UIView {
     
     // MARK: Pulic
     
-    lazy var collectionView: UICollectionView = {
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: createCompose())
+    lazy var collectionView: DynamicHeightCollectionView = {
+        let collection = DynamicHeightCollectionView(frame: .zero, collectionViewLayout: createCompose())
+        collection.translatesAutoresizingMaskIntoConstraints = false
         collection.showsVerticalScrollIndicator = false
         return collection
     }()
@@ -59,7 +60,7 @@ class MainCollectionView: UIView {
         
         // MARK: - Constraints
         
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+      
         NSLayoutConstraint.activate([
             habits.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             habits.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
@@ -73,7 +74,7 @@ class MainCollectionView: UIView {
         collectionView.backgroundColor = .white
         
         editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
-        
+
     }
     
     
@@ -106,7 +107,6 @@ class MainCollectionView: UIView {
         group.contentInsets = NSDirectionalEdgeInsets(top: 18, leading: 8, bottom: 8, trailing: 0)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 18, leading: 8, bottom: 8, trailing: 0)
         
         return section
         
@@ -129,12 +129,20 @@ class MainCollectionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCollectionView()
+       
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupCollectionView()
     }
+    
+    override func layoutIfNeeded() {
+        collectionView.reloadData()
+        collectionView.layoutIfNeeded()
+        print(collectionView.collectionViewLayout.collectionViewContentSize.height)
+    }
+//
 }
 
 // MARK: Collection Delegates and Data
@@ -153,14 +161,17 @@ extension MainCollectionView: UICollectionViewDataSource, UICollectionViewDelega
             
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainCollectionCell
-            
-            cell.configure(text: texts[indexPath.row] ?? "", isEditing: isEditing, maxWidth: frame.width - 40)
+                    
+            cell.configure(text: texts[indexPath.row] , isEditing: isEditing)
+
+           
             cell.deletingClosure = {
                 self.deleteTapped?(indexPath.row)
             }
             return cell
         }
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isEditing && indexPath.row == texts.count  {

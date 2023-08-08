@@ -22,6 +22,8 @@
 		447E9CA62A79264500A0A9FD /* AddCollectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E9CA52A79264500A0A9FD /* AddCollectionItemCell.swift */; };
 		447E9CAF2A7985F400A0A9FD /* MainCollectionFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E9CAE2A7985F400A0A9FD /* MainCollectionFooter.swift */; };
 		447E9CB22A79948300A0A9FD /* MainScreenFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E9CB12A79948300A0A9FD /* MainScreenFooter.swift */; };
+		447E9CC42A8290EE00A0A9FD /* DynamicCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E9CC32A8290EE00A0A9FD /* DynamicCollection.swift */; };
+		447E9CC62A82914600A0A9FD /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E9CC52A82914600A0A9FD /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		447E9CA52A79264500A0A9FD /* AddCollectionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCollectionItemCell.swift; sourceTree = "<group>"; };
 		447E9CAE2A7985F400A0A9FD /* MainCollectionFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionFooter.swift; sourceTree = "<group>"; };
 		447E9CB12A79948300A0A9FD /* MainScreenFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenFooter.swift; sourceTree = "<group>"; };
+		447E9CC32A8290EE00A0A9FD /* DynamicCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicCollection.swift; sourceTree = "<group>"; };
+		447E9CC52A82914600A0A9FD /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +147,10 @@
 			children = (
 				447E9CB02A79947800A0A9FD /* Footer */,
 				447E9CA12A7908F200A0A9FD /* MainCollectionCell.swift */,
+				447E9CC32A8290EE00A0A9FD /* DynamicCollection.swift */,
 				447E9CA52A79264500A0A9FD /* AddCollectionItemCell.swift */,
 				447E9CA32A7908FD00A0A9FD /* MainCollectionView.swift */,
+				447E9CC52A82914600A0A9FD /* MainView.swift */,
 				447E9CAE2A7985F400A0A9FD /* MainCollectionFooter.swift */,
 			);
 			path = Collection;
@@ -233,6 +239,7 @@
 				447E9C7C2A78EAB900A0A9FD /* MainScreenViewController.swift in Sources */,
 				447E9C962A78EFCE00A0A9FD /* MainScreenModel.swift in Sources */,
 				447E9C912A78ED5C00A0A9FD /* MainScreeModelProtocol.swift in Sources */,
+				447E9CC42A8290EE00A0A9FD /* DynamicCollection.swift in Sources */,
 				447E9CA22A7908F200A0A9FD /* MainCollectionCell.swift in Sources */,
 				447E9C9E2A78F56F00A0A9FD /* MainScreenViewModel.swift in Sources */,
 				447E9C9C2A78F4F300A0A9FD /* MainScreenViewModelProtocol.swift in Sources */,
@@ -240,6 +247,7 @@
 				447E9CA42A7908FD00A0A9FD /* MainCollectionView.swift in Sources */,
 				447E9C782A78EAB900A0A9FD /* AppDelegate.swift in Sources */,
 				447E9C7A2A78EAB900A0A9FD /* SceneDelegate.swift in Sources */,
+				447E9CC62A82914600A0A9FD /* MainView.swift in Sources */,
 				447E9CA62A79264500A0A9FD /* AddCollectionItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

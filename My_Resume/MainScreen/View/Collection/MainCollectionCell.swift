@@ -25,29 +25,47 @@ class MainCollectionCell: UICollectionViewCell {
     }()
     
     
+    private var textLeading: NSLayoutConstraint?
+    private var textTop: NSLayoutConstraint?
+    private var textBottom: NSLayoutConstraint?
+    private var textTrailingWithButton: NSLayoutConstraint?
     private var textTrailing: NSLayoutConstraint?
-    private var textClosedButtonTrailing: NSLayoutConstraint?
-    private var cellWidth: NSLayoutConstraint?
     
+    private var buttonTrailing: NSLayoutConstraint?
+    private var buttonCenterY: NSLayoutConstraint?
     
     // MARK: - Public methods
-    func configure(text: String, isEditing: Bool, maxWidth: CGFloat) {
+    func configure(text: String, isEditing: Bool) {
+      
         contentView.layoutIfNeeded()
         titleLabel.text = text
         titleLabel.invalidateIntrinsicContentSize()
         
-        deleteButton.isHidden = !isEditing
-        textTrailing?.isActive = !isEditing
-        textClosedButtonTrailing?.isActive = isEditing
         
-        cellWidth?.constant = maxWidth
+        deleteButton.isHidden = !isEditing
+        textTrailingWithButton?.isActive = isEditing
+        textTrailing?.isActive = !isEditing
+        buttonTrailing?.isActive = isEditing
+        buttonCenterY?.isActive = isEditing
+        contentView.layoutIfNeeded()
+     
+    }
+    
+    private func configureConstraints(isEditing: Bool) {
+        deleteButton.isHidden = !isEditing
     }
     
     @objc func deleteTapped() {
         print("tap")
         deletingClosure?()
     }
-    
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+////        layoutIfNeeded()
+////        layoutSubviews()
+////        contentView.layoutIfNeeded()
+////        contentView.layoutSubviews()
+//    }
     func setupUI() {
         
         contentView.addSubview(titleLabel)
@@ -57,13 +75,19 @@ class MainCollectionCell: UICollectionViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         
-        textTrailing = titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24)
+        textLeading = titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12)
+        textLeading?.isActive = true
+        textTop = titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12)
+        textTop?.isActive = true
+        textBottom = titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
+        textBottom?.isActive = true
+        textTrailingWithButton = titleLabel.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: -12)
+        textTrailing = titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)
         textTrailing?.isActive = true
         
-        textClosedButtonTrailing = titleLabel.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: -10)
-        deleteButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
-        cellWidth = contentView.widthAnchor.constraint(lessThanOrEqualToConstant: 200)
-        cellWidth?.isActive = true
+        
+        buttonCenterY = deleteButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor)
+        buttonTrailing = deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)
         
         titleLabel.font = .systemFont(ofSize: 14)
         titleLabel.numberOfLines = 1
@@ -74,21 +98,7 @@ class MainCollectionCell: UICollectionViewCell {
         contentView.backgroundColor = MyResources.Colors.secondary
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 8
-        
-        
-        // MARK: - Constraints
-        
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            
-            deleteButton.widthAnchor.constraint(equalToConstant: 26),
-            deleteButton.heightAnchor.constraint(equalToConstant: 26),
-            deleteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -14)
-        ])
-        
+
         deleteButton.addTarget(self, action: #selector(deleteTapped), for: .touchUpInside)
         
     }
@@ -109,16 +119,6 @@ class MainCollectionCell: UICollectionViewCell {
         
         titleLabel.text = nil
     }
-    
-    //    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-    //        let targetSize = CGSize(width: layoutAttributes.frame.width + 20,
-    //                                height: layoutAttributes.frame.height)
-    //        let targetAttributes = layoutAttributes.copy() as! UICollectionViewLayoutAttributes
-    //        let textSize = titleLabel.sizeThatFits(targetSize)
-    //        targetAttributes.frame.size = CGSize(width: ceil(textSize.width + 20) ,
-    //                                             height: ceil(textSize.height) )
-    //        return targetAttributes
-    //    }
     
     // MARK: Init's
     

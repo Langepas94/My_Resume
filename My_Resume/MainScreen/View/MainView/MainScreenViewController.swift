@@ -82,11 +82,17 @@ final class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         closureAppearing()
+        
+    }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+//        print(collectionView.collectionView.collectionViewLayout.collectionViewContentSize.height)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         profileImage.layer.cornerRadius = profileImage.frame.width / 2
+        print(collectionView.collectionView.collectionViewLayout.collectionViewContentSize.height)
         
     }
     
@@ -102,8 +108,8 @@ final class MainScreenViewController: UIViewController {
                 
                 self.vm.passHabit(text)
                 self.collectionView.texts = self.vm.getHabits() ?? [""]
-                self.collectionView.collectionView.reloadData()
-                
+                self.collectionView.layoutIfNeeded()
+            
             }
         }
         alertController.addTextField { textfield in
